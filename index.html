@@ -3,14 +3,17 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ប្រព័ន្ធគ្រប់គ្រងរបាយការណ៍ក្រុម</title>
+    <title>ប្រព័ន្ធគ្រប់គ្រងរបាយការណ៍ក្រុម - Colorful Background Edition</title>
     <style>
-        /* --- CSS ផ្នែក Background និង Layout --- */
+        /* --- CSS ផ្នែក Background និង Layout ត្រូវបានកែប្រែ --- */
         body {
             font-family: 'Khmer OS Battambang', 'Segoe UI', sans-serif;
-            background: linear-gradient(-45deg, #667eea, #764ba2, #23a6d5, #23d5ab);
+            
+            /* ផ្នែកដែលបន្ថែមថ្មី៖ ផ្ទៃខាងក្រោយពណ៌ចម្រុះមានចលនា */
+            background: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab, #ff9a44);
             background-size: 400% 400%;
-            animation: gradientBG 15s ease infinite;
+            animation: gradientBG 15s ease infinite; /* ចលនារត់យឺតៗ (15វិនាទី) */
+            
             min-height: 100vh;
             display: flex;
             justify-content: center;
@@ -19,41 +22,69 @@
             padding: 40px 20px;
         }
 
+        /* --- Keyframes ថ្មីសម្រាប់ចលនា Background ធំ --- */
         @keyframes gradientBG {
             0% { background-position: 0% 50%; }
             50% { background-position: 100% 50%; }
             100% { background-position: 0% 50%; }
         }
 
+        /* --- Keyframes ចាស់សម្រាប់ចលនាភ្លើងរត់តាមគែមប្រអប់ --- */
+        @keyframes rainbowMove {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
         .container {
-            background: white;
+            background: rgba(255, 255, 255, 0.95); /* ធ្វើអោយផ្ទៃប្រអប់ថ្លាបន្តិច ដើម្បីអោយស៊ីគ្នាជាមួយ Background ក្រោយ */
             padding: 40px;
-            border-radius: 20px;
-            box-shadow: 0 15px 35px rgba(0,0,0,0.2);
             width: 100%;
             max-width: 500px;
             text-align: center;
+            
+            /* ភ្លើងរត់ជុំវិញប្រអប់ធំ */
+            border: 5px solid transparent;
+            border-radius: 20px;
+            background-image: linear-gradient(rgba(255, 255, 255, 0.95), rgba(255, 255, 255, 0.95)), 
+                              linear-gradient(45deg, #ff0000, #ff7300, #fffb00, #48ff00, #00ffd5, #002bff, #7a00ff, #ff00c8, #ff0000);
+            background-origin: border-box;
+            background-clip: padding-box, border-box;
+            background-size: 400% 400%;
+            animation: rainbowMove 5s ease infinite;
+            box-shadow: 0 20px 50px rgba(0,0,0,0.3); /* បន្ថែម shadow អោយដិតជាងមុនបន្តិច */
         }
 
         h1 { color: #4a4a4a; margin-bottom: 30px; font-size: 24px; }
         .form-group { margin-bottom: 20px; text-align: left; }
         label { display: block; margin-bottom: 8px; color: #666; font-weight: bold; }
 
+        /* --- កែប្រែប្រអប់ Input អោយមានភ្លើងរត់ --- */
         input {
             width: 100%;
             padding: 12px 15px;
-            border: 2px solid #e0e0e0;
-            border-radius: 10px;
             font-size: 16px;
             font-family: inherit;
             outline: none;
             box-sizing: border-box;
             transition: 0.3s;
+            margin-bottom: 5px;
+
+            /* កូដភ្លើងរត់សម្រាប់ Input */
+            border: 3px solid transparent;
+            border-radius: 10px;
+            background-image: linear-gradient(#fff, #fff), 
+                              linear-gradient(90deg, #ff0000, #ff7300, #fffb00, #48ff00, #00ffd5, #002bff, #7a00ff, #ff00c8, #ff0000);
+            background-origin: border-box;
+            background-clip: padding-box, border-box;
+            background-size: 400% 400%;
+            animation: rainbowMove 3s linear infinite;
         }
 
         input:focus {
-            border-color: #764ba2;
-            box-shadow: 0 0 0 4px rgba(118, 75, 162, 0.1);
+            /* ពេលចុចអោយភ្លើងរត់កាន់តែលឿន */
+            animation: rainbowMove 1s linear infinite; 
+            box-shadow: 0 0 15px rgba(118, 75, 162, 0.3);
         }
 
         .btn-action {
@@ -94,17 +125,26 @@
             box-shadow: 0 5px 15px rgba(56, 239, 125, 0.4);
         }
 
-        /* --- CSS សម្រាប់ប្រអប់បង្ហាញលទ្ធផល --- */
+        /* --- កែប្រែប្រអប់ Report អោយមានភ្លើងរត់ --- */
         .simple-report-box {
             margin-top: 30px;
             text-align: left;
-            border: 2px solid #e0e0e0;
-            background: #fdfdfd;
             padding: 20px;
-            border-radius: 10px;
             min-height: 150px;
             max-height: 300px;
             overflow-y: auto;
+            display: flex;
+            flex-direction: column;
+
+            /* កូដភ្លើងរត់សម្រាប់ប្រអប់ Report */
+            border: 3px solid transparent;
+            border-radius: 10px;
+            background-image: linear-gradient(#fdfdfd, #fdfdfd), 
+                              linear-gradient(120deg, #ff0000, #ff7300, #fffb00, #48ff00, #00ffd5, #002bff, #7a00ff, #ff00c8, #ff0000);
+            background-origin: border-box;
+            background-clip: padding-box, border-box;
+            background-size: 400% 400%;
+            animation: rainbowMove 4s linear infinite;
         }
 
         .report-header-date {
@@ -116,35 +156,41 @@
             border-bottom: 2px solid #764ba2;
         }
 
-        /* ស្ទីលសម្រាប់បន្ទាត់នីមួយៗ */
+        .report-footer {
+            margin-top: auto;
+            padding-top: 15px;
+            border-top: 2px solid #764ba2;
+            text-align: center;
+            color: #764ba2;
+            font-weight: bold;
+            font-size: 16px;
+        }
+
         .report-line {
             padding: 8px 0;
             border-bottom: 1px dashed #ddd;
             color: #333;
             font-size: 16px;
             animation: fadeIn 0.3s ease;
-            display: flex; /* ប្រើ Flex ដើម្បីតម្រៀបអក្សរ និងប៊ូតុងលុប */
+            display: flex;
             justify-content: space-between;
             align-items: center;
         }
 
         .report-line:last-child { border-bottom: none; }
 
-        /* ផ្នែកអក្សរ (អាចកែបាន) */
         .text-content {
-            flex-grow: 1; /* ឱ្យអក្សរយកកន្លែងធំ */
+            flex-grow: 1;
             padding: 2px 5px;
             border-radius: 4px;
             outline: none;
         }
         
-        /* ពេលចុចកែអក្សរ ឱ្យចេញពណ៌ផ្ទៃក្រោយបន្តិច */
         .text-content:focus {
             background-color: #fffde7; 
             border: 1px dashed #f1c40f;
         }
 
-        /* ប៊ូតុងលុប (Delete X) */
         .delete-btn {
             background: none;
             border: none;
@@ -170,7 +216,7 @@
 <body>
 
     <div class="container">
-        <h1>បង្កើតរបាយការណ៍ក្រុម</h1>
+        <h1>បង្កើតរបាយការណ៍ក្រុម 🌈</h1>
 
         <div class="form-group">
             <label for="groupSelect">ជ្រើសរើស ឬ វាយបញ្ចូលក្រុម (Group)</label>
@@ -194,6 +240,7 @@
 
         <div id="reportContainer" class="simple-report-box">
             <div id="dateHeader" class="report-header-date"></div>
+            <div id="reportFooter" class="report-footer"> សូមអរគុណ🙏🙏🙏</div>
         </div>
 
         <button class="btn-copy" onclick="copyReport()">
@@ -228,6 +275,7 @@
             const groupInput = document.getElementById('groupSelect');
             const memberInput = document.getElementById('memberCount');
             const container = document.getElementById('reportContainer');
+            const footer = document.getElementById('reportFooter');
 
             let rawGroupName = groupInput.value; 
             const memberCount = memberInput.value;
@@ -237,19 +285,21 @@
                 return;
             }
 
-            let shortGroupName = rawGroupName.split(' (')[0];
+            let shortGroupName = rawGroupName.split(' (')[0].trim();
 
-            // បង្កើតបន្ទាត់ថ្មី
+            if (!shortGroupName.startsWith("ក្រុម")) {
+                shortGroupName = "ក្រុម " + shortGroupName;
+            }
+
             const newLine = document.createElement('div');
             newLine.className = 'report-line';
             
-            // បញ្ចូល HTML ដែលមានទាំងអក្សរ (contenteditable) និងប៊ូតុងលុប
             newLine.innerHTML = `
                 <span class="text-content" contenteditable="true" title="ចុចទីនេះដើម្បីកែអក្សរ">${shortGroupName} សមាជិក ${memberCount} (សមាជិកនៅកន្លែងគ្រប់)</span>
                 <button class="delete-btn" onclick="deleteLine(this)" title="លុបចោល">❌</button>
             `;
 
-            container.appendChild(newLine);
+            container.insertBefore(newLine, footer);
 
             groupInput.value = "";
             memberInput.value = "";
@@ -261,25 +311,22 @@
             groupInput.focus();
         }
 
-        // --- មុខងារលុបបន្ទាត់ ---
         function deleteLine(btnElement) {
-            // លុបធាតុរបាយការណ៍ដែលជាឪពុករបស់ប៊ូតុងនេះ
             btnElement.parentElement.remove();
         }
 
-        // --- មុខងារ Copy (កែសម្រួលថ្មី) ---
         function copyReport() {
             const dateHeader = document.getElementById('dateHeader').innerText;
-            
-            // ចាប់យកតែអក្សរចេញពី span class="text-content" ប៉ុណ្ណោះ (មិនយកប៊ូតុងលុប)
+            const reportFooter = document.getElementById('reportFooter').innerText;
             const lines = document.querySelectorAll('.text-content');
             
             let fullText = dateHeader + "\n\n";
             
-            // រត់កូដដើម្បីយកអក្សរពីបន្ទាត់នីមួយៗ
             lines.forEach(line => {
                 fullText += line.innerText + "\n";
             });
+
+            fullText += "\n" + reportFooter;
 
             if(lines.length === 0) {
                  alert("មិនមានទិន្នន័យសម្រាប់ចម្លងទេ!");
