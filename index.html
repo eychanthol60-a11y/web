@@ -3,17 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ប្រព័ន្ធគ្រប់គ្រងរបាយការណ៍ក្រុម - Colorful Background Edition</title>
+    <title>ប្រព័ន្ធរបាយការណ៍ - Time Select Edition</title>
     <style>
-        /* --- CSS ផ្នែក Background និង Layout ត្រូវបានកែប្រែ --- */
+        /* --- CSS ផ្នែក Background និង Layout --- */
         body {
             font-family: 'Khmer OS Battambang', 'Segoe UI', sans-serif;
-            
-            /* ផ្នែកដែលបន្ថែមថ្មី៖ ផ្ទៃខាងក្រោយពណ៌ចម្រុះមានចលនា */
             background: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab, #ff9a44);
             background-size: 400% 400%;
-            animation: gradientBG 15s ease infinite; /* ចលនារត់យឺតៗ (15វិនាទី) */
-            
+            animation: gradientBG 15s ease infinite;
             min-height: 100vh;
             display: flex;
             justify-content: center;
@@ -22,14 +19,12 @@
             padding: 40px 20px;
         }
 
-        /* --- Keyframes ថ្មីសម្រាប់ចលនា Background ធំ --- */
         @keyframes gradientBG {
             0% { background-position: 0% 50%; }
             50% { background-position: 100% 50%; }
             100% { background-position: 0% 50%; }
         }
 
-        /* --- Keyframes ចាស់សម្រាប់ចលនាភ្លើងរត់តាមគែមប្រអប់ --- */
         @keyframes rainbowMove {
             0% { background-position: 0% 50%; }
             50% { background-position: 100% 50%; }
@@ -37,13 +32,11 @@
         }
 
         .container {
-            background: rgba(255, 255, 255, 0.95); /* ធ្វើអោយផ្ទៃប្រអប់ថ្លាបន្តិច ដើម្បីអោយស៊ីគ្នាជាមួយ Background ក្រោយ */
+            background: rgba(255, 255, 255, 0.95);
             padding: 40px;
             width: 100%;
             max-width: 500px;
             text-align: center;
-            
-            /* ភ្លើងរត់ជុំវិញប្រអប់ធំ */
             border: 5px solid transparent;
             border-radius: 20px;
             background-image: linear-gradient(rgba(255, 255, 255, 0.95), rgba(255, 255, 255, 0.95)), 
@@ -52,15 +45,28 @@
             background-clip: padding-box, border-box;
             background-size: 400% 400%;
             animation: rainbowMove 5s ease infinite;
-            box-shadow: 0 20px 50px rgba(0,0,0,0.3); /* បន្ថែម shadow អោយដិតជាងមុនបន្តិច */
+            box-shadow: 0 20px 50px rgba(0,0,0,0.3);
         }
 
-        h1 { color: #4a4a4a; margin-bottom: 30px; font-size: 24px; }
-        .form-group { margin-bottom: 20px; text-align: left; }
+        /* Class ថ្មីសម្រាប់អក្សរភ្លើងរត់ */
+        .rainbow-text {
+            font-size: 32px;
+            font-weight: bold;
+            margin-bottom: 20px;
+            background-image: linear-gradient(90deg, #ff0000, #ff7300, #fffb00, #48ff00, #00ffd5, #002bff, #7a00ff, #ff00c8, #ff0000);
+            background-size: 400% 100%;
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            animation: rainbowMove 3s linear infinite;
+            display: inline-block;
+        }
+
+        .form-group { margin-bottom: 15px; text-align: left; }
         label { display: block; margin-bottom: 8px; color: #666; font-weight: bold; }
 
-        /* --- កែប្រែប្រអប់ Input អោយមានភ្លើងរត់ --- */
-        input {
+        /* Input & Select Styles */
+        input, select {
             width: 100%;
             padding: 12px 15px;
             font-size: 16px;
@@ -69,8 +75,6 @@
             box-sizing: border-box;
             transition: 0.3s;
             margin-bottom: 5px;
-
-            /* កូដភ្លើងរត់សម្រាប់ Input */
             border: 3px solid transparent;
             border-radius: 10px;
             background-image: linear-gradient(#fff, #fff), 
@@ -80,63 +84,107 @@
             background-size: 400% 400%;
             animation: rainbowMove 3s linear infinite;
         }
+        input:focus, select:focus { animation: rainbowMove 1s linear infinite; box-shadow: 0 0 15px rgba(118, 75, 162, 0.3); }
 
-        input:focus {
-            /* ពេលចុចអោយភ្លើងរត់កាន់តែលឿន */
-            animation: rainbowMove 1s linear infinite; 
-            box-shadow: 0 0 15px rgba(118, 75, 162, 0.3);
+        .status-group { display: flex; gap: 10px; margin-bottom: 20px; }
+        
+        .btn-status {
+            flex: 1;
+            padding: 12px;
+            border: 3px solid transparent;
+            border-radius: 10px;
+            background-color: #f0f0f0;
+            font-family: inherit;
+            font-weight: bold;
+            color: #666;
+            cursor: pointer;
+            transition: 0.3s;
+            background-image: linear-gradient(#f0f0f0, #f0f0f0), linear-gradient(90deg, #ccc, #ddd);
+            background-origin: border-box;
+            background-clip: padding-box, border-box;
         }
 
-        .btn-action {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        .btn-status.active {
+            color: white;
+            background-image: linear-gradient(135deg, #667eea 0%, #764ba2 100%), 
+                              linear-gradient(90deg, #ff0000, #ff7300, #fffb00, #48ff00, #00ffd5, #002bff, #7a00ff, #ff00c8, #ff0000);
+            background-size: 400% 400%;
+            animation: rainbowMove 2s linear infinite;
+            box-shadow: 0 5px 15px rgba(118, 75, 162, 0.4);
+        }
+
+        #absentSection {
+            display: none;
+            background: #fff5f5;
+            padding: 15px;
+            border-radius: 10px;
+            border: 2px dashed #ff4757;
+            margin-bottom: 20px;
+            text-align: left;
+        }
+
+        .absent-row { display: flex; gap: 5px; margin-bottom: 10px; align-items: center; }
+        .absent-row input { margin-bottom: 0; padding: 8px; font-size: 14px; }
+        
+        .btn-add-absent {
+            background: #ff4757;
             color: white;
             border: none;
+            padding: 5px 10px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 14px;
+            margin-top: 5px;
+        }
+
+        .btn-remove-row { background: none; border: none; color: red; font-size: 18px; cursor: pointer; }
+
+        .btn-action {
+            background-image: linear-gradient(135deg, #667eea 0%, #764ba2 100%), 
+                              linear-gradient(90deg, #ff0000, #ff7300, #fffb00, #48ff00, #00ffd5, #002bff, #7a00ff, #ff00c8, #ff0000);
+            color: white;
+            border: 3px solid transparent;
             padding: 15px 30px;
-            border-radius: 10px;
+            border-radius: 12px;
             font-size: 18px;
             cursor: pointer;
             width: 100%;
             font-family: inherit;
             margin-top: 10px;
-            transition: all 0.2s;
+            background-origin: border-box;
+            background-clip: padding-box, border-box;
+            background-size: 400% 400%;
+            animation: rainbowMove 2s linear infinite;
         }
-
-        .btn-action:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 5px 15px rgba(118, 75, 162, 0.4);
-        }
+        .btn-action:hover { transform: translateY(-3px); }
 
         .btn-copy {
-            background: linear-gradient(135deg, #11998e 0%, #38ef7d 100%);
+            background-image: linear-gradient(135deg, #11998e 0%, #38ef7d 100%), 
+                              linear-gradient(90deg, #ff0000, #ff7300, #fffb00, #48ff00, #00ffd5, #002bff, #7a00ff, #ff00c8, #ff0000);
             color: white;
-            border: none;
+            border: 3px solid transparent;
             padding: 15px 30px;
-            border-radius: 10px;
+            border-radius: 12px;
             font-size: 18px;
             cursor: pointer;
             width: 100%;
             font-family: inherit;
             margin-top: 15px;
-            transition: all 0.2s;
+            background-origin: border-box;
+            background-clip: padding-box, border-box;
+            background-size: 400% 400%;
+            animation: rainbowMove 2s linear infinite;
         }
 
-        .btn-copy:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 5px 15px rgba(56, 239, 125, 0.4);
-        }
-
-        /* --- កែប្រែប្រអប់ Report អោយមានភ្លើងរត់ --- */
         .simple-report-box {
             margin-top: 30px;
             text-align: left;
             padding: 20px;
             min-height: 150px;
-            max-height: 300px;
+            max-height: 400px;
             overflow-y: auto;
             display: flex;
             flex-direction: column;
-
-            /* កូដភ្លើងរត់សម្រាប់ប្រអប់ Report */
             border: 3px solid transparent;
             border-radius: 10px;
             background-image: linear-gradient(#fdfdfd, #fdfdfd), 
@@ -147,91 +195,75 @@
             animation: rainbowMove 4s linear infinite;
         }
 
-        .report-header-date {
-            color: #764ba2;
-            font-weight: bold;
-            font-size: 16px;
-            margin-bottom: 15px;
-            padding-bottom: 10px;
-            border-bottom: 2px solid #764ba2;
-        }
-
-        .report-footer {
-            margin-top: auto;
-            padding-top: 15px;
-            border-top: 2px solid #764ba2;
-            text-align: center;
-            color: #764ba2;
-            font-weight: bold;
-            font-size: 16px;
-        }
-
-        .report-line {
-            padding: 8px 0;
-            border-bottom: 1px dashed #ddd;
-            color: #333;
-            font-size: 16px;
-            animation: fadeIn 0.3s ease;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .report-line:last-child { border-bottom: none; }
-
-        .text-content {
-            flex-grow: 1;
-            padding: 2px 5px;
-            border-radius: 4px;
-            outline: none;
+        .report-header-date { color: #764ba2; font-weight: bold; margin-bottom: 15px; border-bottom: 2px solid #764ba2; white-space: pre-wrap; line-height: 1.5; }
+        .report-footer { margin-top: auto; padding-top: 15px; border-top: 2px solid #764ba2; text-align: center; color: #764ba2; font-weight: bold; }
+        
+        .report-line { 
+            padding: 10px 0; 
+            border-bottom: 1px dashed #ddd; 
+            display: flex; 
+            justify-content: space-between; 
+            align-items: flex-start; 
         }
         
-        .text-content:focus {
-            background-color: #fffde7; 
-            border: 1px dashed #f1c40f;
+        .text-content { 
+            flex-grow: 1; 
+            padding: 5px; 
+            outline: none; 
+            line-height: 1.8; 
+            white-space: pre-wrap; 
+            font-size: 16px;
         }
+        
+        .text-content:focus { background-color: #fffde7; border: 1px dashed #f1c40f; border-radius: 5px;}
+        .delete-btn { background: none; border: none; color: #ff4757; cursor: pointer; font-size: 14px; margin-top: 5px;}
 
-        .delete-btn {
-            background: none;
-            border: none;
-            color: #ff4757;
-            font-size: 14px;
-            cursor: pointer;
-            padding: 5px 10px;
-            margin-left: 10px;
-            border-radius: 5px;
-            transition: 0.2s;
-        }
-
-        .delete-btn:hover {
-            background-color: #ffe0e3;
-        }
-
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(5px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
     </style>
 </head>
 <body>
 
     <div class="container">
-        <h1>បង្កើតរបាយការណ៍ក្រុម </h1>
+        <h1 class="rainbow-text">ស្រង់របាយការណ៍តាមក្រុម</h1>
+        
+        <div class="form-group">
+            <label>ជ្រើសរើសពេល (Time)</label>
+            <select id="timeSelect" onchange="updateHeader()">
+                <option value="(ពេលព្រឹក)">ពេលព្រឹក</option>
+                <option value="(ពេលរសៀល)" selected>ពេលរសៀល</option>
+                <option value="(ពេលយប់)">ពេលយប់</option>
+            </select>
+        </div>
 
         <div class="form-group">
-            <label for="groupSelect">ជ្រើសរើស ឬ វាយបញ្ចូលក្រុម (Group)</label>
-            <input list="groupList" id="groupSelect" placeholder="សូមវាយឈ្មោះក្រុម ឬចុចជ្រើសរើស..." oninput="updateButtonText()">
+            <label>ជ្រើសរើស ឬ វាយបញ្ចូលក្រុម (Group)</label>
+            <input list="groupList" id="groupSelect" placeholder="សូមវាយឈ្មោះក្រុម..." oninput="checkInput()">
             <datalist id="groupList">
-                <option value="ក្រុម A (Group A)">
-                <option value="ក្រុម B (Group B)">
-                <option value="ក្រុម C (Group C)">
-                <option value="ក្រុម D (Group D)">
+
             </datalist>
         </div>
 
         <div class="form-group">
-            <label for="memberCount">ចំនួនសមាជិត (Member Count)</label>
-            <input type="number" id="memberCount" placeholder="បញ្ចូលចំនួនសមាជិត" min="1">
+            <label>ចំនួនសមាជិក (Member Count)</label>
+            <input type="number" id="memberCount" placeholder="បញ្ចូលចំនួនសមាជិត" min="1" oninput="checkInput()">
+        </div>
+
+        <div class="status-group">
+            <button class="btn-status active" id="btnPresent" onclick="toggleStatus('present')">សមាជិកនៅគ្រប់</button>
+            <button class="btn-status" id="btnAbsent" onclick="toggleStatus('absent')">អវត្តមាន</button>
+        </div>
+
+        <datalist id="reasonOptions">
+            <option value="ច្បាប់ឈឺ">
+            <option value="ច្បាប់ទៅផ្ទះ">
+            <option value="ច្បាប់ទៅក្រៅ">
+            <option value="ច្បាប់ទៅប្រឡង">
+        </datalist>
+
+        <div id="absentSection">
+            <label style="color: #ff4757;">បញ្ជីឈ្មោះអ្នកអវត្តមាន៖</label>
+            <div id="absentListContainer">
+            </div>
+            <button type="button" class="btn-add-absent" onclick="addAbsentField()">+ បន្ថែមអ្នកអវត្តមាន</button>
         </div>
 
         <button id="actionBtn" class="btn-action" onclick="submitReport()">
@@ -249,25 +281,61 @@
     </div>
 
     <script>
+        let currentStatus = 'present';
+
         window.onload = function() {
-            const today = new Date();
-            const day = today.getDate();
-            const month = today.getMonth() + 1;
-            const year = today.getFullYear();
-            const headerText = `ជម្រាបបងនេះរាយការណ៍នៅថ្ងៃទី ${day} ខែ ${month} ឆ្នាំ ${year}`;
-            document.getElementById('dateHeader').innerText = headerText;
+            updateHeader();
+            addAbsentField();
+            loadFromLocalStorage();
         };
 
-        function updateButtonText() {
+        function updateHeader() {
+            const today = new Date();
+            // ចាប់យកតម្លៃពីប្រអប់ជ្រើសរើសពេល
+            const timeVal = document.getElementById('timeSelect').value;
+            const headerText = `ជម្រាបបងនេះរាយការណ៍នៅថ្ងៃទី ${today.getDate()} ខែ ${today.getMonth() + 1} ឆ្នាំ ${today.getFullYear()}\n${timeVal}`;
+            document.getElementById('dateHeader').innerText = headerText;
+        }
+
+        function toggleStatus(status) {
+            currentStatus = status;
+            const btnPresent = document.getElementById('btnPresent');
+            const btnAbsent = document.getElementById('btnAbsent');
+            const absentSection = document.getElementById('absentSection');
+
+            if (status === 'present') {
+                btnPresent.classList.add('active');
+                btnAbsent.classList.remove('active');
+                absentSection.style.display = 'none';
+            } else {
+                btnPresent.classList.remove('active');
+                btnAbsent.classList.add('active');
+                absentSection.style.display = 'block';
+            }
+        }
+
+        function addAbsentField() {
+            const container = document.getElementById('absentListContainer');
+            const div = document.createElement('div');
+            div.className = 'absent-row';
+            div.innerHTML = `
+                <input type="text" placeholder="ឈ្មោះ" class="absName">
+                <input type="text" placeholder="មូលហេតុ" class="absReason" list="reasonOptions">
+                <button class="btn-remove-row" onclick="this.parentElement.remove()">×</button>
+            `;
+            container.appendChild(div);
+        }
+
+        function checkInput() {
             const groupValue = document.getElementById('groupSelect').value;
             const btn = document.getElementById('actionBtn');
 
             if (groupValue.trim() !== "") {
                 btn.innerText = "ដាក់បញ្ចូលរបាយការណ៍ (Submit)";
-                btn.style.background = "linear-gradient(135deg, #23d5ab 0%, #23a6d5 100%)";
+                btn.style.backgroundImage = "linear-gradient(135deg, #23d5ab 0%, #23a6d5 100%), linear-gradient(90deg, #ff0000, #ff7300, #fffb00, #48ff00, #00ffd5, #002bff, #7a00ff, #ff00c8, #ff0000)";
             } else {
                  btn.innerText = "សូមបញ្ចូលឈ្មោះក្រុមជាមុនសិន";
-                 btn.style.background = "linear-gradient(135deg, #667eea 0%, #764ba2 100%)";
+                 btn.style.backgroundImage = "linear-gradient(135deg, #667eea 0%, #764ba2 100%), linear-gradient(90deg, #ff0000, #ff7300, #fffb00, #48ff00, #00ffd5, #002bff, #7a00ff, #ff00c8, #ff0000)";
             }
         }
 
@@ -286,33 +354,88 @@
             }
 
             let shortGroupName = rawGroupName.split(' (')[0].trim();
+            if (!shortGroupName.startsWith("ក្រុម")) { shortGroupName = "ក្រុម " + shortGroupName; }
 
-            if (!shortGroupName.startsWith("ក្រុម")) {
-                shortGroupName = "ក្រុម " + shortGroupName;
+            let line1 = `${shortGroupName} សមាជិក ${memberCount}នាក់ (សមាជិកនៅកន្លែងគ្រប់)`;
+
+            let finalHTML = "";
+
+            if (currentStatus === 'present') {
+                finalHTML = line1;
+            } else {
+                const names = document.querySelectorAll('.absName');
+                const reasons = document.querySelectorAll('.absReason');
+                let absenteeHTML = "";
+                let absCount = 0;
+
+                for (let i = 0; i < names.length; i++) {
+                    const name = names[i].value.trim();
+                    const reason = reasons[i].value.trim();
+                    if (name !== "") {
+                        absenteeHTML += `<br>-${name} ( ${reason || 'គ្មានមូលហេតុ'} )`;
+                        absCount++;
+                    }
+                }
+
+                if (absCount === 0) {
+                    alert("សូមបំពេញឈ្មោះអ្នកអវត្តមានយ៉ាងតិច ១នាក់!");
+                    return;
+                }
+
+                finalHTML = `${line1}<br>អវត្តមាន ${absCount}នាក់${absenteeHTML}`;
             }
 
             const newLine = document.createElement('div');
             newLine.className = 'report-line';
-            
             newLine.innerHTML = `
-                <span class="text-content" contenteditable="true" title="ចុចទីនេះដើម្បីកែអក្សរ">${shortGroupName} សមាជិក ${memberCount} (សមាជិកនៅកន្លែងគ្រប់)</span>
-                <button class="delete-btn" onclick="deleteLine(this)" title="លុបចោល">❌</button>
+                <div class="text-content" contenteditable="true" oninput="saveToLocalStorage()">${finalHTML}</div>
+                <button class="delete-btn" onclick="removeLine(this)">❌</button>
             `;
 
             container.insertBefore(newLine, footer);
 
+            saveToLocalStorage();
+
             groupInput.value = "";
             memberInput.value = "";
-            
-            const btn = document.getElementById('actionBtn');
-            btn.innerText = "សូមបញ្ចូលឈ្មោះក្រុមជាមុនសិន";
-            btn.style.background = "linear-gradient(135deg, #667eea 0%, #764ba2 100%)";
-            
+            toggleStatus('present');
+            document.getElementById('absentListContainer').innerHTML = "";
+            addAbsentField();
+            checkInput();
             groupInput.focus();
         }
 
-        function deleteLine(btnElement) {
-            btnElement.parentElement.remove();
+        function saveToLocalStorage() {
+            const lines = document.querySelectorAll('.report-line .text-content');
+            let dataToSave = [];
+            lines.forEach(line => {
+                dataToSave.push(line.innerHTML);
+            });
+            localStorage.setItem('myReportData', JSON.stringify(dataToSave));
+        }
+
+        function loadFromLocalStorage() {
+            const savedData = localStorage.getItem('myReportData');
+            if (savedData) {
+                const reports = JSON.parse(savedData);
+                const container = document.getElementById('reportContainer');
+                const footer = document.getElementById('reportFooter');
+
+                reports.forEach(htmlContent => {
+                    const newLine = document.createElement('div');
+                    newLine.className = 'report-line';
+                    newLine.innerHTML = `
+                        <div class="text-content" contenteditable="true" oninput="saveToLocalStorage()">${htmlContent}</div>
+                        <button class="delete-btn" onclick="removeLine(this)">❌</button>
+                    `;
+                    container.insertBefore(newLine, footer);
+                });
+            }
+        }
+
+        function removeLine(btn) {
+            btn.parentElement.remove();
+            saveToLocalStorage();
         }
 
         function copyReport() {
@@ -321,27 +444,17 @@
             const lines = document.querySelectorAll('.text-content');
             
             let fullText = dateHeader + "\n\n";
-            
-            lines.forEach(line => {
-                fullText += line.innerText + "\n";
+            lines.forEach(line => { 
+                fullText += line.innerText + "\n\n"; 
             });
+            fullText += reportFooter;
 
-            fullText += "\n" + reportFooter;
-
-            if(lines.length === 0) {
-                 alert("មិនមានទិន្នន័យសម្រាប់ចម្លងទេ!");
-                 return;
-            }
+            if(lines.length === 0) { alert("មិនមានទិន្នន័យសម្រាប់ចម្លងទេ!"); return; }
 
             navigator.clipboard.writeText(fullText)
-                .then(() => {
-                    alert("✅ បានចម្លងរបាយការណ៍រួចរាល់!");
-                })
-                .catch(err => {
-                    console.error('Failed to copy: ', err);
-                });
+                .then(() => { alert("✅ បានចម្លងរបាយការណ៍រួចរាល់!"); })
+                .catch(err => { console.error('Failed to copy: ', err); });
         }
     </script>
 </body>
 </html>
-
